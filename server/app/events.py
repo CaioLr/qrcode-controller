@@ -8,13 +8,15 @@ sessions = {}
 
 #Create session
 def create_session(uuid):
-    user_id = uuid
-    sessions[user_id] = {"connected_users": []}
+    sessions[str(uuid)] = {"connected_users": []}
     print(sessions)
 
 #Join session (this is for the main page and the controller)
 @socketio.on('join_session')
 def join_session(data):
+
+    print('Join session called')
+
     session_id = data.get('uuid')
     user = data.get('user')
 
@@ -25,6 +27,7 @@ def join_session(data):
         print(sessions)
     else:
         emit('error', {'message': 'Sessão inválida'})
+        print('ERROR')
 
 #Send messages (The controller to the main page)
 @socketio.on('handle_message')

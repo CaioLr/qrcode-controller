@@ -1,6 +1,5 @@
-from flask import Flask, send_file
+from flask import Flask, make_response, send_file, Blueprint, render_template, jsonify
 import uuid
-from flask import Blueprint, render_template
 from .helpers import getQRcode
 from .events import create_session
 
@@ -22,5 +21,7 @@ def set():
 
     create_session(id)
 
-    return send_file(img, mimetype='image/jpeg')
+    response = make_response(send_file(img, mimetype='image/jpeg'))
+    response.headers['uuid'] = str(id)
 
+    return response
