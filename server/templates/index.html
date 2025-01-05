@@ -62,6 +62,10 @@
 
                     socket.emit("join_session", data);
                 })
+
+                socket.on("new_message", function(data) {
+                    console.log('Controller: ', data.message)
+                })
               
             }, 500); 
 

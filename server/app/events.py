@@ -3,7 +3,7 @@ from flask_socketio import emit,join_room
 
 from .extensions import socketio
 
-# Mudar para DB
+# Use your own DB, to keep the sessions and user connected
 sessions = {}
 
 #Create session
@@ -36,6 +36,6 @@ def handle_message(data):
     message = data.get('message')
 
     if session_id in sessions:
-        emit('new_message', {'message': message}, room=session_id)
+        emit('new_message', {'message': message}, room=session_id, broadcast=True)
     else:
         emit('error', {'message': 'Sessão inválida'})

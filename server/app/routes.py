@@ -12,7 +12,7 @@ def home():
 
 @bp.route('/controller/<uuid>')
 def controller(uuid):
-    return render_template('controller.html',uuid=uuid)
+    return render_template('controller/index.html',uuid=uuid)
 
 @bp.route('/set/')
 def set():
