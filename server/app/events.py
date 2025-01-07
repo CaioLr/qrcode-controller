@@ -27,7 +27,7 @@ def join_session(data):
         print(sessions)
     else:
         emit('error', {'message': 'Sessão inválida'})
-        print('ERROR')
+        print('Sessão inválida')
 
 #Send messages (The controller to the main page)
 @socketio.on('handle_message')

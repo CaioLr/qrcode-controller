@@ -5,45 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controller</title>
     <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/controller.js')}}"></script>
 </head>
 <body>
-    Controller
-
     <input type="text" id="message" placeholder="Message">
-   
-    <script>
-
-        const socket = io({autoConnect: false});
-
-        const uuid = window.location.pathname.split('/')[2]
-        console.log('ID recebido:'+uuid)
-
-        document.addEventListener('DOMContentLoaded', () => {
-
-            socket.connect();
-
-            socket.on("connect", function() {
-
-
-                data = {'uuid':uuid, 'user':'controllerPage'}
-
-                socket.emit("join_session", data);
-            })
-
-            document.getElementById("message").addEventListener("keyup", function (event) {
-            if (event.key == "Enter") {
-                let message = document.getElementById("message").value;
-                let data = {
-                    'session_id':uuid,
-                    'message':message
-                }
-                socket.emit("handle_message", data);
-                document.getElementById("message").value = "";
-            }
-            })
-
-
-        })
-    </script>
 </body>
 </html>
